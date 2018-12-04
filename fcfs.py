@@ -1,9 +1,10 @@
 class cstruct:
+	
+	turnaroundTime = 0
+	start_exe_time = 0
     arrival_time = 0
     burst_time = 0
     process_name = " "
-    turnaround_time = 0
-    start_exe_time = 0
     departure_time = 0
     waiting_time = 0
 
@@ -11,13 +12,13 @@ class cstruct:
 
 
 def main():
-    data_array = [cstruct() for i in range(30)]
-    total_time = 0
+	total_time = 0
+    data_array = [cstruct() for i in range(50)]
     count = 0
     fin = open("input1.txt",'r')
     fin.readline()
     
-    read_line = "empty"
+    read_line = "null"
 
     while read_line != "":
         read_line = fin.readline()
@@ -38,7 +39,7 @@ def main():
     
 
     print("")
-    print("Process name  , Arrival Time , Burst Time ,Start Exec Time, Waiting Time, Turnaround Time ")
+    print("Process name  , Arrival Time , Burst Time ,Start Execution Time, Waiting Time, Turnaround Time ")
 
     loop = count-1
     while loop >= 0:
@@ -47,13 +48,13 @@ def main():
         loop -= 1
 
     for i in range(count):
-        print("%10s" % data_array[i].process_name,'%10d' % data_array[i].arrival_time,"%10d" % data_array[i].burst_time,"%10d" % data_array[i].start_exe_time,"%10d" % data_array[i].waiting_time,"%10d" % data_array[i].turnaround_time)
+        print("%10s" % data_array[i].process_name,'%10d' % data_array[i].arrival_time,"%10d" % data_array[i].burst_time,"%10d" % data_array[i].start_exe_time,"%10d" % data_array[i].waiting_time,"%10d" % data_array[i].turnaroundTime)
 
     sumwt=0
     sumtr=0        
     for i in range(count):
         sumwt = data_array[i].waiting_time + sumwt
-        sumtr = data_array[i].turnaround_time + sumtr
+        sumtr = data_array[i].turnaroundTime + sumtr
 
     print("")
     print("Average waiting time is: %f" %(sumwt/count))
@@ -69,7 +70,7 @@ def run_process(running,total_time):
     running.departure_time = running.start_exe_time + running.burst_time
     total_time = running.departure_time
     running.waiting_time = running.departure_time - running.arrival_time - running.burst_time
-    running.turnaround_time = running.departure_time - running.arrival_time
+    running.turnaroundTime = running.departure_time - running.arrival_time
 
     return running,total_time
 

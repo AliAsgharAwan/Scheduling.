@@ -1,18 +1,15 @@
-class cstruct:
-	
-	turnaroundTime = 0
-	start_exe_time = 0
+class cstruct:	
+    turnaroundTime = 0
+    start_exe_time = 0
     arrival_time = 0
     burst_time = 0
     process_name = " "
     departure_time = 0
     waiting_time = 0
-
-
-
+    priority = 0
 
 def main():
-	total_time = 0
+    total_time = 0
     data_array = [cstruct() for i in range(50)]
     count = 0
     fin = open("input1.txt",'r')
@@ -30,17 +27,17 @@ def main():
             data_array[count].process_name = data[0]
             data_array[count].arrival_time = int(data[1])
             data_array[count].burst_time = int(data[2])
+            data_array[count].priority = int(data[3])
             count += 1
 
 
     fin.close()
 
-	data_array.sort(key=lambda cstruct: (cstruct.arrival_time,cstruct.burst_time),reverse=True)
-
+    data_array=sorted(data_array,key=lambda cstruct:(cstruct.arrival_time,cstruct.priority),reverse = True)
     
 
     print("")
-    print("Process name  , Arrival Time , Burst Time ,Start Execution Time, Waiting Time, Turnaround Time ")
+    print("Process name  , Arrival Time , Burst Time,Priority ,Start ExecutionTime, Waiting Time, Turnaround Time")
 
     loop = count-1
     while loop >= 0:
@@ -49,7 +46,7 @@ def main():
         loop -= 1
 
     for i in range(count):
-        print("%10s" % data_array[i].process_name,'%10d' % data_array[i].arrival_time,"%10d" % data_array[i].burst_time,"%10d" % data_array[i].start_exe_time,"%10d" % data_array[i].waiting_time,"%10d" % data_array[i].turnaroundTime)
+        print("%10s" % data_array[i].process_name,'%10s'% data_array[i].arrival_time,'%10s' % data_array[i].burst_time,'%10s' % data_array[i].priority,'%10s' % data_array[i].start_exe_time,'%10s' % data_array[i].waiting_time,'%10s' % data_array[i].turnaroundTime)
 
     sumwt=0
     sumtr=0        
