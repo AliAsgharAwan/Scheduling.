@@ -1,7 +1,4 @@
-Time_Slice   4
-input_after  2
-in_out_time  10
-Process Name       Arrival Time      Burst Time    input
-asdddd.exe            0                 16            no
-asddgd.exe            1                 3             no
-dfhdhf.exe            2                 3             no
+Process Name       Arrival Time      Burst Time       Priority
+fgfd.exe            1                3                1
+bbdgd.exe           1                5                0
+dhf.exe             3                6                2
